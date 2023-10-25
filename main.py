@@ -8,12 +8,25 @@ def menu():
     print(' 3. Verificar faltas')
     print(' 4. Modificar registro')
     print(' 5. Registrar aluno')
-    print(' 5. Registrar professor')
+    print(' 6. Registrar professor')
     print('')
 
 def escolha_menu():
     menu()
     escolha = input('Digite o número: ')
+
+    if escolha == '1':
+    	pass
+    elif escolha == '2':
+    	pass
+    elif escolha == '3':
+    	pass
+    elif escolha == '4':
+    	pass
+    elif escolha == '5':
+    	pass
+    elif escolha == '6':
+    	pass
 
 while True:
     escolha_menu()
