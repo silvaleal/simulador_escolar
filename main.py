@@ -71,7 +71,7 @@ def registrar_professor(nome, idade, salario):
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
     finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
-        cursor.close()
+        conex.close()
 
 
 def registrar_curso(nome, instrutor):
@@ -85,7 +85,7 @@ def registrar_curso(nome, instrutor):
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
     finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
-        cursor.close()
+        conex.close()
 
 
 def verificar_aluno():
@@ -97,8 +97,12 @@ def verificar_professor():
 
 
 def verificar_curso():
-    pass
-
+    try:
+        conex = sqlite3.connect('database.db')
+    except Exception as error:
+        print(f'Erro encontrado: {error}')
+    finally:
+        conex.close
 
 while True:
     escolha_menu()
