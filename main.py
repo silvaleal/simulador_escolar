@@ -1,11 +1,13 @@
 # Programador: @ojoser1
-import os
+import os # Não requer instalação
 import sqlite3  # pip install db-sqlite3.
 import random  # Não requer instalação.
 import time  # Não requer instalação
 
-# Obs.: No banco de dados, chamei os professores de instrutores, então fique obvío que, professor = instrutor :)
-
+# Observações:
+# -> No banco de dados (SQLite3), chamei os professores de instrutores, então fique obvío que, professor = instrutor :)
+# -> ID = Identificador
+# Aprender é bom, mas aprender a programar é melhor ainda.
 
 def menu(): # Atual menu do simulador
     print('')
@@ -16,7 +18,7 @@ def menu(): # Atual menu do simulador
     print(' 4. Registrar aluno')
     print(' 5. Registrar professor')
     print(' 6. Registrar curso')
-    print('')
+    print(' 7. Analisar os dados ★')
 
 
 def escolha_menu(): # Responsável pela escolha do usuário.
@@ -24,22 +26,39 @@ def escolha_menu(): # Responsável pela escolha do usuário.
     escolha = input('Digite o número: ')
 
     if escolha == '1':
-        pass
-
+        print('')
+        print(verificar_alunos())
+        input('PRESSIONE "ENTER" PARA CONTINUAR.')
     elif escolha == '2':
-        pass
+        print('')
+        print(verificar_professores())
+        input('PRESSIONE "ENTER" PARA CONTINUAR.')
     elif escolha == '3':
         print('')
-        print(verificar_curso())
+        print(verificar_cursos())
         input('PRESSIONE "ENTER" PARA CONTINUAR.')
     elif escolha == '4':
         nome = input('Digite o nome COMPLETO do aluno. \n')
-        curso = input('Digite o curso do aluno. \n')
-        registrar_aluno(nome, curso)
         print('')
-        print(f' Aluno "{nome}" foi registrado no sistema.')
-        print('')
-        input('PRESSIONE "ENTER" PARA CONTINUAR.')
+        print('Nossos cursos disponíveis.')
+        print(verificar_cursos())
+
+        try:
+            curso = int(input('Digite o ID do curso escolhido. \n'))
+            pesquisa_curso = procura_curso(curso)
+            if pesquisa_curso:
+                registrar_aluno(nome, pesquisa_curso[1])
+                print('')
+                print(f' Aluno "{nome}" foi registrado no sistema.')
+                print('')
+                input('PRESSIONE "ENTER" PARA CONTINUAR.')
+            else:
+                print('')
+                print('Curso não encontrado')
+                input('PRESSIONE "ENTER" PARA CONTINUAR.')
+
+        except Exception as error:
+            print(f'Erro encontrado: {error}')
     elif escolha == '5':
         nome = input('Digite o nome COMPLETO do professor. \n')
         idade = int(input('Digite a idade do professor. \n'))
@@ -49,7 +68,6 @@ def escolha_menu(): # Responsável pela escolha do usuário.
         print(f' Professor "{nome}" foi registrado no sistema.')
         print('')
         input('PRESSIONE "ENTER" PARA CONTINUAR.')
-        
     elif escolha == '6':
         nome = input('Digite o nome do curso. \n')
         professor = input('Digite o nome COMPLETO do professor. \n')
@@ -60,10 +78,10 @@ def escolha_menu(): # Responsável pela escolha do usuário.
         print('')
         input('PRESSIONE "ENTER" PARA CONTINUAR.')
 
-
+# Neste projeto quero que os identificados tenham 5 digítos.
+# E esses digitos sejam todos aleatórios.
 def gerar_id(): # Função para gerar o id (identificador) dos cursos, professores e alunos.
     return random.randint(10000, 99999)
-
 
 def registrar_aluno(nome, curso):
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
@@ -107,11 +125,26 @@ def registrar_curso(nome, instrutor):
         conex.close()
 
 
-def verificar_aluno():
-    pass
+def verificar_alunos():
+    try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
+        conex = sqlite3.connect('database.db')
+        cursor = conex.cursor() 
+
+        cursor.execute('SELECT * FROM alunos')
+
+        alunos_encontrados = '' # String que irá receber o ID e o NOME dos cursos.
+        
+        for aluno_id, aluno_nome, aluno_curso in cursor.fetchall():
+            alunos_encontrados += f'ID: {aluno_id} | ALUNO: {aluno_nome} - CURSO: {aluno_curso}\n'
+        return alunos_encontrados
+
+    except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
+        print(f'Erro encontrado: {error}')
+    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+        conex.close()
 
 
-def verificar_professor():
+def verificar_professores():
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
         conex = sqlite3.connect('database.db')
         cursor = conex.cursor() 
@@ -121,7 +154,7 @@ def verificar_professor():
         professores_encontrados = '' # String que irá receber o ID e o NOME dos cursos.
         
         for professor_id, professor_nome, professor_idade, professor_salario in cursor.fetchall():
-            curso_encontrados += f'ID: {professor__id} | PROFESSOR: {professor__nome} ()\n'
+            professores_encontrados += f'ID: {professor_id} | PROFESSOR: {professor_nome} de {professor_idade} anos - R${professor_salario}\n'
         return professores_encontrados
 
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
@@ -130,7 +163,7 @@ def verificar_professor():
         conex.close()
 
 
-def verificar_curso():
+def verificar_cursos():
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
         conex = sqlite3.connect('database.db')
         cursor = conex.cursor() 
@@ -148,5 +181,21 @@ def verificar_curso():
     finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
         conex.close()
 
+def procura_curso(curso_id):
+    try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
+        conex = sqlite3.connect('database.db')
+        cursor = conex.cursor() 
+
+        cursor.execute(f'SELECT curso_id, curso_nome FROM cursos WHERE curso_id = {curso_id}')
+        resultado = cursor.fetchone()
+        if resultado:
+            return resultado
+        else:
+            return None
+
+    except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
+        print(f'Erro encontrado: {error}')
+    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+        conex.close()
 while True:
     escolha_menu()
