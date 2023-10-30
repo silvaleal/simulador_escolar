@@ -4,9 +4,8 @@
 
 # Changelogs
 
-- 25/10/23 - Hello, world.
-- 30/10/2023 - Sistema de SQL (Banco de dados) finalizados
-- 30/10/2023 - Modificações dos nomes das funções.
+* 25/10/23 - Hello, world.
+* 30/10/2023 - Sistema de SQL (Banco de dados) finalizado.
 
 # Tecnologias
 
@@ -16,4 +15,4 @@
 
 # Desafio para programadores.
 
-- No registro, verifique se o id escolha (id para cursos, professores e alunos) já existe, caso existir, gere outro. 
+- No registro, verifique se o id escolha (id para cursos, professores e alunos) já existe, caso existir, gere outro.
