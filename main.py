@@ -1,4 +1,6 @@
-# Programador: @ojoser1
+# Programador: @ojoser1 - AUTOBOTS 2023
+# Contato: joseeer27@gmail.com
+
 import os # Não requer instalação
 import sqlite3  # pip install db-sqlite3.
 import random  # Não requer instalação.
@@ -7,6 +9,12 @@ import time  # Não requer instalação
 # Observações:
 # -> No banco de dados (SQLite3), chamei os professores de instrutores, então fique obvío que, professor = instrutor :)
 # -> ID = Identificador
+# -> Caso queira ler mais sobre analise de dados, vá para a linha 205, lá você irá encontrar comentários.
+# -> Novato na programação? Não se esqueça de assistir vídeos-aulas e ler códigos de algo com o seu nível. Exemplo: Dev novato ler códigos básicos.
+
+# NOTA DO DEV:
+# -> Note que eu não irei usar o EXCEL, prefiro usar SQL.
+
 # Aprender é bom, mas aprender a programar é melhor ainda.
 
 def menu(): # Atual menu do simulador
@@ -45,7 +53,7 @@ def escolha_menu(): # Responsável pela escolha do usuário.
 
         try:
             curso = int(input('Digite o ID do curso escolhido. \n'))
-            pesquisa_curso = procura_curso(curso)
+            pesquisa_curso = procurar_curso(curso)
             if pesquisa_curso:
                 registrar_aluno(nome, pesquisa_curso[1])
                 print('')
@@ -77,8 +85,10 @@ def escolha_menu(): # Responsável pela escolha do usuário.
         print(f' Responsável: {professor}.')
         print('')
         input('PRESSIONE "ENTER" PARA CONTINUAR.')
+    elif escolha == '7':
+        print('Algo feito ;c. Sorry')
 
-# Neste projeto quero que os identificados tenham 5 digítos.
+# Neste projeto quero que os ids (identificados) tenham 5 digítos.
 # E esses digitos sejam todos aleatórios.
 def gerar_id(): # Função para gerar o id (identificador) dos cursos, professores e alunos.
     return random.randint(10000, 99999)
@@ -93,7 +103,7 @@ def registrar_aluno(nome, curso):
         conex.commit()
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
 
@@ -107,7 +117,7 @@ def registrar_professor(nome, idade, salario):
         conex.commit()
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
 
@@ -121,7 +131,7 @@ def registrar_curso(nome, instrutor):
         conex.commit()
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
 
@@ -140,7 +150,7 @@ def verificar_alunos():
 
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
 
@@ -159,7 +169,7 @@ def verificar_professores():
 
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
 
@@ -178,10 +188,10 @@ def verificar_cursos():
 
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
-def procura_curso(curso_id):
+def procurar_curso(curso_id):
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
         conex = sqlite3.connect('database.db')
         cursor = conex.cursor() 
@@ -195,7 +205,8 @@ def procura_curso(curso_id):
 
     except Exception as error:  # Caso o código dentro do "try" esteja errado, ele irá entrar aqui. :)
         print(f'Erro encontrado: {error}')
-    finally:  # Ação que irá acontecer no final, é opção, afinal eu poderia ficar a conexão no "try".
+    finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
+
 while True:
     escolha_menu()
