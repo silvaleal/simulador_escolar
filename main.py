@@ -106,7 +106,6 @@ def registrar_aluno(nome, curso):
     finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
-
 def registrar_professor(nome, idade, salario):
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
         conex = sqlite3.connect('database.db')
@@ -120,7 +119,6 @@ def registrar_professor(nome, idade, salario):
     finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
-
 def registrar_curso(nome, instrutor):
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
         conex = sqlite3.connect('database.db')
@@ -133,7 +131,6 @@ def registrar_curso(nome, instrutor):
         print(f'Erro encontrado: {error}')
     finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
-
 
 def verificar_alunos():
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
@@ -153,7 +150,6 @@ def verificar_alunos():
     finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
 
-
 def verificar_professores():
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.
         conex = sqlite3.connect('database.db')
@@ -171,7 +167,6 @@ def verificar_professores():
         print(f'Erro encontrado: {error}')
     finally:  # Ação que irá acontecer no final, é opcional, afinal eu poderia fechar a conexão no "try".
         conex.close()
-
 
 def verificar_cursos():
     try:  # Isto é um tratamento de erro, caso o código dentro do "try" esteja certo, ele vai acontecer normalmente.

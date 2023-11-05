@@ -1,11 +1,12 @@
 # SIMULADOR ESCOLAR | Clube robótica 2023
 
-- Autor: José Rodolfo (@ojoser) | AUTOBOTS
+- Equipe responsável: AUTOBOTS (Clube Robótica 2023)
+- Programador: José
+- Apresentadores: Lilyan, João Lucas e Kaio.
 
-# Changelogs
+# Aviso
 
-* 25/10/23 - Hello, world.
-* 30/10/2023 - Sistema de SQL (Banco de dados) finalizado.
+Este projeto não foi planejado/programado para ser algo profissional, então usaremos um banco de dados local e um simples painel dashboard.
 
 # Tecnologias
 
