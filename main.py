@@ -5,6 +5,7 @@ import os # Não requer instalação
 import sqlite3  # pip install db-sqlite3.
 import random  # Não requer instalação.
 import time  # Não requer instalação
+import dashboard
 
 # Observações:
 # -> No banco de dados (SQLite3), chamei os professores de instrutores, então fique obvío que, professor = instrutor :)
@@ -86,7 +87,10 @@ def escolha_menu(): # Responsável pela escolha do usuário.
         print('')
         input('PRESSIONE "ENTER" PARA CONTINUAR.')
     elif escolha == '7':
-        print('Algo feito ;c. Sorry')
+        print('')
+        print('inicie o  arquivo chamado "dashboard.py" para obter um gráfico dos nossos professores.')
+        print('')
+        input('PRESSIONE "ENTER" PARA CONTINUAR.')
 
 # Neste projeto quero que os ids (identificados) tenham 5 digítos.
 # E esses digitos sejam todos aleatórios.
