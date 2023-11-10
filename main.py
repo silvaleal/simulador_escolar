@@ -53,7 +53,9 @@ def escolha_menu():  # Responsável pela escolha do usuário.
         input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
 
     elif escolha == '4': # Verificar eventos
-        pass
+        print('')
+        print(verificar_eventos())
+        input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
 
     elif escolha == '5': # Registrar aluno
         nome = input('Digite o nome COMPLETO do aluno. \n')
@@ -99,7 +101,16 @@ def escolha_menu():  # Responsável pela escolha do usuário.
         input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
     
     elif escolha == '8': # Registrar evento
-        pass
+        print('')
+        nome = input("Digite o nome do evento. ")
+        responsavel_nome = input("Digite o NOME COMPLETO do responsável. ")
+        data = input("Digite a data que irá ocorrer. Exemplo: 10/11/2023 ")
+        print(registrar_evento(nome, responsavel_nome, data))
+        print('')
+        print(f' Evento "{nome}" foi registrado com sucesso')
+        print(f' Data marcado: {data} | Responsável: {responsavel_nome}')
+        print('')
+        input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
 
 # Leia para descobrir mais informações do projeto em nosso PDF oficial. (apresentação/autobots.pdf)
 
