@@ -7,9 +7,13 @@ def verificar_eventos(): # Todos os eventos
     try:
         conexao = sqlite3.connect('database.db')
         cursor = conexao.cursor()
-
         cursor.execute('SELECT * FROM eventos')
-        return cursor.fetchall()
+
+        eventos_encontrados = ''
+
+        for evento_id, evento_nome, evento_responsável, evento_data in cursor.fetchall():
+            eventos_encontrados += f'ID: {evento_id} | EVENTO: {evento_nome}({evento_responsável}) - DATA: {evento_data}\n'
+        return eventos_encontrados
 
     except Exception as error:
         print(f'Erro encontrado: {error}')
@@ -26,35 +30,6 @@ def registrar_evento(nome, responsavel_nome, data):
             evento_id, evento_nome, evento_responsável, evento_data) VALUES ({gerar_id()}, "{nome}", "{responsavel_nome}", "{data}")''') # 
         conexao.commit()
         conexao.close()
-
-    except Exception as error:
-        print(f'Erro encontrado: {error}')
-
-def pegar_status(nome): # Função para pegar o status de um evento.
-    try:
-        conexao = sqlite3.connect('database.db')
-        cursor = conexao.cursor()
-
-        cursor.execute(f'SELECT evento_status FROM eventos WHERE evento_nome = "{nome}"')
-        resultado = cursor.fetchall()
-        conexao.close()
-        return resultado
-
-    except Exception as error:
-        print(f'Erro encontrado: {error}')
-
-def mudar_status(nome): # Função que mudará o status do evento.
-    try:
-        resultado = procurar_evento(nome)
-        if resultado:
-            if resultado == True:
-                # Mudar para "False"
-                pass
-            else:
-                # Mudar para "True"
-                pass
-        else:
-            return None
 
     except Exception as error:
         print(f'Erro encontrado: {error}')
