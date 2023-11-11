@@ -23,7 +23,7 @@ def registrar_evento(nome, responsavel_nome, data):
         cursor = conexao.cursor()
 
         cursor.execute(f'''INSERT INTO eventos (
-            evento_id, evento_nome, evento_responsável, evento_data, evento_status) VALUES ({gerar_id()}, "{nome}", "{responsavel_nome}", "{data}", False)''') # 
+            evento_id, evento_nome, evento_responsável, evento_data) VALUES ({gerar_id()}, "{nome}", "{responsavel_nome}", "{data}")''') # 
         conexao.commit()
         conexao.close()
 

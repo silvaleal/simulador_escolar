@@ -11,7 +11,6 @@ Este projeto não foi planejado/programado para ser algo profissional, então us
 # Tecnologias
 
 - SQL - Banco de dados (Irá armazenar os dados escolares). (SQlite3)
-- Analise de dados - Criar um dashboard com interação.
 - Python - Linguagem de programação
 
 # Desafio para programadores.

@@ -1,17 +1,15 @@
 # Programador: @ojoser1 - AUTOBOTS 2023
 # Contato: joseeer27@gmail.com
+# Simulador Escolar V1 (terminal)
 
-import os  # Não requer instalação
 import sqlite3  # pip install db-sqlite3.
 import random  # Não requer instalação.
 import time  # Não requer instalação
 from functions.funcao_alunos import *
 from functions.funcao_cursos import *
 from functions.funcao_eventos import *
-from functions.funcao_faltas import *
 from functions.funcao_professores import *
-
-# import dashboard
+from functions.cores import *
 
 # Observações:
 # -> No banco de dados (SQLite3), chamei os professores de instrutores, então fique obvío que, professor = instrutor :)
@@ -19,9 +17,17 @@ from functions.funcao_professores import *
 # -> Novato na programação? Não se esqueça de assistir vídeos-aulas e ler códigos de algo com o seu nível. Exemplo: Dev novato ler códigos básicos.
 
 # Aprender é bom, mas aprender a programar é melhor ainda.
+# Leia para descobrir mais informações do projeto em nosso PDF oficial. (apresentação/autobots.pdf)
+
+def menu_faltas():
+    print()
+    print(' MENU FALTA ')
+    print(' 1. Verificar faltas')
+    print(' 2. Remover faltas')
+    print(' 3. Adicionar faltas')
 
 def menu():  # Atual menu do simulador
-    print('')
+    print(corYELLOW) # Além de criar um espaço, irá colocar o menu amarelo.
     print(' Simulador escolar - 2023')
     print(' 1. Verificar alunos')
     print(' 2. Verificar professores')
@@ -34,28 +40,27 @@ def menu():  # Atual menu do simulador
 
 def escolha_menu():  # Responsável pela escolha do usuário.
     menu()
-    escolha = input('Digite o número: ')
+    escolha = input(f' -> Digite o número: {corDefault}')
 
     if escolha == '1': # Verificar alunos
         print('')
         print(verificar_alunos())
-        escolha = input(
-            'PRESSIONE "ENTER" PARA VOLTAR AO MENU. \nPRESSIONE "1 + ENTER" PARA PROCURAR UM CERTO ALUNO\n')
+        escolha = input(f'{corYELLOW} PRESSIONE "ENTER" PARA VOLTAR AO MENU.{corDefault} ')
 
     elif escolha == '2': # Verificar professores 
         print('')
         print(verificar_professores())
-        input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
+        input(f'{corYELLOW} PRESSIONE "ENTER" PARA VOLTAR AO MENU.{corDefault}')
 
     elif escolha == '3': # Verificar cursos
         print('')
         print(verificar_cursos())
-        input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
+        input(f'{corYELLOW} PRESSIONE "ENTER" PARA VOLTAR AO MENU.{corDefault}')
 
     elif escolha == '4': # Verificar eventos
         print('')
         print(verificar_eventos())
-        input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
+        input(f'{corYELLOW} PRESSIONE "ENTER" PARA VOLTAR AO MENU.{corDefault}')
 
     elif escolha == '5': # Registrar aluno
         nome = input('Digite o nome COMPLETO do aluno. \n')
@@ -103,16 +108,15 @@ def escolha_menu():  # Responsável pela escolha do usuário.
     elif escolha == '8': # Registrar evento
         print('')
         nome = input("Digite o nome do evento. ")
+        print(verificar_professores())
         responsavel_nome = input("Digite o NOME COMPLETO do responsável. ")
         data = input("Digite a data que irá ocorrer. Exemplo: 10/11/2023 ")
-        print(registrar_evento(nome, responsavel_nome, data))
+        registrar_evento(nome, responsavel_nome, data)
         print('')
         print(f' Evento "{nome}" foi registrado com sucesso')
         print(f' Data marcado: {data} | Responsável: {responsavel_nome}')
         print('')
         input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
-
-# Leia para descobrir mais informações do projeto em nosso PDF oficial. (apresentação/autobots.pdf)
 
 while True:
     escolha_menu()
