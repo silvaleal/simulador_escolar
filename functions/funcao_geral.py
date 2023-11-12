@@ -2,6 +2,8 @@ import random
 import sqlite3
 from datetime import datetime
 from functions.funcao_geral import *
+import pandas as pd
+import os
 
 # Neste projeto quero que os ids (identificados) tenham 5 digítos.
 # E esses digitos sejam todos aleatórios.
@@ -31,6 +33,34 @@ def pegar_id(nome, tipo): # Função para pegar o id de acordo com o tipo (usand
 def pegar_data_atual():
     data = datetime.now()
     return f"{data.day}/{data.month}/{data.year}"
+
+def converter_para_excel():
+    print('')
+    print(' 1. ALUNOS')
+    print(' 2. PROFESSORES')
+    print(' 3. EVENTOS')
+    print(' 4. CURSOS')
+    print('')
+    tipo = input('QUAL A ÁREA QUE DESEJA EXPORTAR? ')
+    if tipo == '1':
+        tipo = 'alunos'
+
+    if tipo == '2':
+        tipo = 'instrutores'
+
+    if tipo == '3':
+        tipo = 'eventos'
+
+    if tipo == '4':
+        tipo = 'cursos'
+    
+    df = pd.read_sql(f'SELECT * FROM {tipo}', sqlite3.connect('database.db'))
+    data = pegar_data_atual().split('/')
+    try:
+        df.to_excel(f'./pdfs/{tipo}_{data[0]}_{data[1]}_{data[2]}.xlsx', index=False)
+    except Exception as error:
+        os.mkdir('./pdfs')
+        df.to_excel(f'./pdfs/{tipo}_{data[0]}_{data[1]}_{data[2]}.xlsx', index=False)
 
 # Criar um EXCEL com os dados do SQL (Perfeito para mandar emails ;c)
 

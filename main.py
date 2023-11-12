@@ -118,5 +118,8 @@ def escolha_menu():  # Responsável pela escolha do usuário.
         print('')
         input('PRESSIONE "ENTER" PARA VOLTAR AO MENU.')
 
+    elif escolha == '9': # Converter dados SQL para excel.
+        converter_para_excel()
+
 while True:
     escolha_menu()
