@@ -37,6 +37,7 @@ def menu():  # Atual menu do simulador
     print(' 6. Registrar professor')
     print(' 7. Registrar curso')
     print(' 8. Registrar evento')
+    print(' 9. Converter excel')
 
 def escolha_menu():  # Responsável pela escolha do usuário.
     menu()
