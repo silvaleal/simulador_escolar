@@ -1,8 +1,8 @@
 # SIMULADOR ESCOLAR | Clube robótica 2023
 
-- Equipe responsável: AUTOBOTS (Clube Robótica 2023)
-- Programador: José
-- Apresentadores: Lilyan, João Lucas e Kaio.
+Simulador escolar 2023 é um projeto feito em python, ele pode ser usado para base para programas/sites que gerenciam escolas (ou até mesmo outro nicho). *Veja mais informações no pdf do projeto [clicando aqui](apresentação/Introdução_autobots.pdf).*
+
+![1700906150792](apresentação/imgs/menu.png "Menu atual")
 
 # Aviso
 
